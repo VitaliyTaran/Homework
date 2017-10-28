@@ -17,13 +17,19 @@ public class Main {
         for (int i = 0; i < 100; i++) {
             executorService.execute(new ThrowDitails(factory, barrier));
             while (!factory.getRandomDetails().isEmpty()) {
-                executorService.execute(new FirstThread(factory, firstList, barrier));
-                executorService.execute(new SecondThread(factory, secondList, barrier));
+                if (Math.random() * 2 <= 1) {
+                    if (!factory.getRandomDetails().isEmpty()) {
+                        executorService.execute(new FirstThread(factory, firstList, barrier));
+                    }
+                } else {
+                    if (!factory.getRandomDetails().isEmpty()) {
+                        executorService.execute(new SecondThread(factory, secondList, barrier));
+                    }
+                }
             }
             try {
-                Thread.sleep(100);
+                Thread.sleep(50);
             } catch (InterruptedException e) {
-                e.printStackTrace();
             }
         }
 
@@ -50,9 +56,9 @@ public class Main {
                 factory.trowOutRandomPartsOfRobots(false);
             }
             try {
+                Thread.sleep(50);
                 barrier.await();
             } catch (InterruptedException | BrokenBarrierException e) {
-                e.printStackTrace();
             }
         }
     }
@@ -82,7 +88,6 @@ public class Main {
             try {
                 barrier.await();
             } catch (InterruptedException | BrokenBarrierException e) {
-                e.printStackTrace();
             }
         }
     }
@@ -112,7 +117,6 @@ public class Main {
             try {
                 barrier.await();
             } catch (InterruptedException | BrokenBarrierException e) {
-                e.printStackTrace();
             }
         }
     }
