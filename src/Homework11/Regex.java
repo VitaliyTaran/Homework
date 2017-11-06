@@ -36,16 +36,7 @@ public class Regex {
             String line = list.get(i);
             Matcher matcher = pattern.matcher(line);
             if(!matcher.find()){
-                int summ = 0;
-                for (Integer value : map.values()) {
-                    summ += value;
-                }
-                for (Map.Entry<String, Integer> entry : map.entrySet()) {
-                    String key = entry.getKey();
-                    Integer value = entry.getValue();
-                    out.add(key + ": " + value + " минут (" + (value * 100) / summ + "%)");
-                }
-                out.add("\n");
+                form(out,map);
                 map.clear();
                 i++;
             }
@@ -67,16 +58,7 @@ public class Regex {
 
             }
         }
-        int summ = 0;
-        for (Integer value : map.values()) {
-            summ += value;
-        }
-        for (Map.Entry<String, Integer> entry : map.entrySet()) {
-            String key = entry.getKey();
-            Integer value = entry.getValue();
-            out.add(key + ": " + value + " минут (" + (value * 100) / summ + "%)");
-        }
-        out.add("\n");
+        form(out,map);
         printFile.printInFile2(out);
     }
     public void statisticsAll(List<String> list) {
@@ -104,17 +86,19 @@ public class Regex {
 
             }
         }
-        int summ = 0;
-        for (Integer value : map.values()) {
-            summ += value;
-        }
-        for (Map.Entry<String, Integer> entry : map.entrySet()) {
-            String key = entry.getKey();
-            Integer value = entry.getValue();
-            out.add(key + ": " + value + " минут (" + (value * 100) / summ + "%)");
-        }
-        out.add("\n");
+        form(out,map);
         printFile.printInFile2(out);
     }
-
+private void form (List<String> out,HashMap<String, Integer> map){
+    int summ = 0;
+    for (Integer value : map.values()) {
+        summ += value;
+    }
+    for (Map.Entry<String, Integer> entry : map.entrySet()) {
+        String key = entry.getKey();
+        Integer value = entry.getValue();
+        out.add(key + ": " + value + " минут (" + (value * 100) / summ + "%)");
+    }
+    out.add("\n");
+}
 }
