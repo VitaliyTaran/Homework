@@ -18,7 +18,6 @@ public class PrintFile {
             e.printStackTrace();
         }
     }
-
     public void printInFile1(List<String> list) {
         for (String elements : list) {
             printWriterFile1.write(elements + "\n");

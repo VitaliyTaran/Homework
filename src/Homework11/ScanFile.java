@@ -26,8 +26,6 @@ public class ScanFile {
             e.printStackTrace();
         }
     }
-
-
     public void printFile1() {
         try {
             Scanner scanner = new Scanner(new BufferedReader(new FileReader(file1)));
@@ -39,7 +37,6 @@ public class ScanFile {
             e.printStackTrace();
         }
     }
-
     public void printFile2() {
         try {
             Scanner scanner = new Scanner(new BufferedReader(new FileReader(file2)));
